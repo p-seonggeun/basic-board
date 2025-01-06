@@ -1,0 +1,9 @@
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:8083/basic_board?serverTimezone=UTC
+    username: root
+    password: basicboard
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
