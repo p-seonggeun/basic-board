@@ -7,6 +7,7 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -53,5 +54,18 @@ class PostRepositoryTest {
         assertEquals("수정내용", updatedPost.getContent());
     }
 
+    @Test
+    public void 게시글_삭제() throws Exception {
+        //given
+        Post post = new Post("제목", "내용");
+        repository.save(post);
+        Long postId = post.getId();
 
+        //when
+        repository.deleteById(postId);
+        List<Post> result = repository.findAll();
+
+        //then
+        assertEquals(0, result.size());
+    }
 }
