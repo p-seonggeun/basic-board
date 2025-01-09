@@ -1,14 +1,13 @@
-package com.example.basicboard.dto;
+package com.example.basicboard.dto.post;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
-import lombok.Setter;
 
 @Getter
 @AllArgsConstructor
 @Builder
-public class PostCreateRequestDto {
+public class PostUpdateRequestDto {
 
     private String title;
     private String content;

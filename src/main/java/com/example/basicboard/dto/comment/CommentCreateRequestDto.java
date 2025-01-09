@@ -1,16 +1,14 @@
-package com.example.basicboard.dto;
+package com.example.basicboard.dto.comment;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
-import lombok.Setter;
 
+@Builder
 @Getter
 @AllArgsConstructor
-@Builder
-public class PostUpdateRequestDto {
+public class CommentCreateRequestDto {
 
-    private String title;
     private String content;
 
 }

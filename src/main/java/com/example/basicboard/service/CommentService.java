@@ -1,6 +1,6 @@
 package com.example.basicboard.service;
 
-import com.example.basicboard.dto.*;
+import com.example.basicboard.dto.comment.*;
 import com.example.basicboard.entity.Comment;
 import com.example.basicboard.entity.Post;
 import com.example.basicboard.repository.CommentRepository;

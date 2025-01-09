@@ -1,4 +1,4 @@
-package com.example.basicboard.dto;
+package com.example.basicboard.dto.comment;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 @Builder
 @Getter
 @AllArgsConstructor
-public class CommentCreateResponseDto {
+public class CommentUpdateResponseDto {
 
     private Long id;
     private Long postId;

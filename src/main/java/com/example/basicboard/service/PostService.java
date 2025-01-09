@@ -1,9 +1,9 @@
 package com.example.basicboard.service;
 
-import com.example.basicboard.dto.PostCreateRequestDto;
-import com.example.basicboard.dto.PostCreateResponseDto;
-import com.example.basicboard.dto.PostDetailResponseDto;
-import com.example.basicboard.dto.PostUpdateResponseDto;
+import com.example.basicboard.dto.post.PostCreateRequestDto;
+import com.example.basicboard.dto.post.PostCreateResponseDto;
+import com.example.basicboard.dto.post.PostDetailResponseDto;
+import com.example.basicboard.dto.post.PostUpdateResponseDto;
 import com.example.basicboard.entity.Post;
 import com.example.basicboard.repository.PostRepository;
 import lombok.RequiredArgsConstructor;

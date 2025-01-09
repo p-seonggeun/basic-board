@@ -1,20 +1,20 @@
-package com.example.basicboard.dto;
+package com.example.basicboard.dto.comment;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
-import lombok.Setter;
 
 import java.time.LocalDateTime;
 
+@Builder
 @Getter
 @AllArgsConstructor
-@Builder
-public class PostUpdateResponseDto {
+public class CommentCreateResponseDto {
 
     private Long id;
-    private String title;
+    private Long postId;
     private String content;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
+
 }
