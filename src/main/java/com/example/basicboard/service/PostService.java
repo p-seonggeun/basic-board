@@ -19,6 +19,7 @@ import java.util.NoSuchElementException;
 public class PostService {
 
     private final PostRepository postRepository;
+    private final CommentService commentService;
 
     @Transactional
     public PostCreateResponseDto savePost(PostCreateRequestDto requestDto) {
@@ -54,23 +55,13 @@ public class PostService {
         Post findPost = postRepository.findPostWithCommentsById(postId)
                 .orElseThrow(() -> new NoSuchElementException("찾는 게시글이 없습니다."));
 
-        List<Comment> findComments = findPost.getComments();
-        List<CommentResponseDto> commentDtos = new ArrayList<>();
-        for (Comment comment : findComments) {
-            commentDtos.add(CommentResponseDto.builder()
-                    .id(comment.getId())
-                    .postId(comment.getId())
-                    .content(comment.getContent())
-                    .createdAt(comment.getCreatedAt())
-                    .updatedAt(comment.getUpdatedAt())
-                    .build());
-        }
+        List<CommentResponseDto> commentsByPostId = commentService.getCommentsByPostId(postId);
 
         return PostDetailResponseDto.builder()
                 .id(findPost.getId())
                 .title(findPost.getTitle())
                 .content(findPost.getContent())
-                .comments(commentDtos)
+                .comments(commentsByPostId)
                 .createdAt(findPost.getCreatedAt())
                 .updatedAt(findPost.getUpdatedAt())
                 .build();
