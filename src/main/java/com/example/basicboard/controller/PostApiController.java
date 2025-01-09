@@ -38,8 +38,8 @@ public class PostApiController {
     public String deletePostById(@PathVariable("id") Long postId) {
         boolean result = postService.deletePostById(postId);
         if (!result) {
-            return "삭제 중 예외 발생";
+            return postId + "번 게시글 삭제 중 예외 발생";
         }
-        return "삭제 완료";
+        return postId + "번 게시글 삭제 완료";
     }
 }

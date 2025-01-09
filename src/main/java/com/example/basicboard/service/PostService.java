@@ -83,12 +83,15 @@ public class PostService {
 
         findPost.changePost(requestDto.getTitle(), requestDto.getContent());
 
+        Post updatedPost = postRepository.findPostById(postId)
+                .orElseThrow(() -> new IllegalArgumentException("업데이트된 게시글을 찾을 수 없습니다."));
+
         return PostUpdateResponseDto.builder()
-                .id(findPost.getId())
-                .title(findPost.getTitle())
-                .content(findPost.getContent())
-                .createdAt(findPost.getCreatedAt())
-                .updatedAt(findPost.getUpdatedAt())
+                .id(updatedPost.getId())
+                .title(updatedPost.getTitle())
+                .content(updatedPost.getContent())
+                .createdAt(updatedPost.getCreatedAt())
+                .updatedAt(updatedPost.getUpdatedAt()) // 최신 상태 반영
                 .build();
     }
 
