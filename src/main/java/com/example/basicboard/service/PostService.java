@@ -1,10 +1,7 @@
 package com.example.basicboard.service;
 
 import com.example.basicboard.dto.comment.CommentResponseDto;
-import com.example.basicboard.dto.post.PostCreateRequestDto;
-import com.example.basicboard.dto.post.PostCreateResponseDto;
-import com.example.basicboard.dto.post.PostDetailResponseDto;
-import com.example.basicboard.dto.post.PostUpdateResponseDto;
+import com.example.basicboard.dto.post.*;
 import com.example.basicboard.entity.Comment;
 import com.example.basicboard.entity.Post;
 import com.example.basicboard.repository.PostRepository;
@@ -37,6 +34,22 @@ public class PostService {
                 .build();
     }
 
+    public List<PostListResponseDto> getPosts() {
+        List<Post> posts = postRepository.findAll();
+        List<PostListResponseDto> result = new ArrayList<>();
+
+        for (Post post : posts) {
+            result.add(PostListResponseDto.builder()
+                    .id(post.getId())
+                    .title(post.getTitle())
+                    .createdAt(post.getCreatedAt())
+                    .updatedAt(post.getUpdatedAt())
+                    .build());
+        }
+
+        return result;
+    }
+
     public PostDetailResponseDto getPostById(Long postId) {
         Post findPost = postRepository.findPostWithCommentsById(postId)
                 .orElseThrow(() -> new NoSuchElementException("찾는 게시글이 없습니다."));
@@ -64,7 +77,7 @@ public class PostService {
     }
 
     @Transactional
-    public PostUpdateResponseDto updatePostById(Long postId, PostCreateRequestDto requestDto) {
+    public PostUpdateResponseDto updatePostById(Long postId, PostUpdateRequestDto requestDto) {
         Post findPost = postRepository.findPostById(postId)
                 .orElseThrow(() -> new IllegalArgumentException("찾는 게시글이 존재하지 않습니다."));
 
